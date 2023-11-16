@@ -1,20 +1,18 @@
 import './App.css';
+import HomePage from './components/HomePage';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import RsvpSection from './components/RsvpSection';
 
 function App() {
   return (
-    <div className="App">
-      <div className="rsvp-container">
-        <p id='title' >Eric and Lauren</p>
-        <p id='date'>Monday June 10, 2024</p>
-        <p id='rsvp'>RSVP</p>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" Component={HomePage}/>
+          <Route path="/rsvp" Component={RsvpSection}/>
+        </Routes>
       </div>
-      <div className="container">
-        <div className="schedule-container">
-          <h2>Schedule</h2>
-          <p>Coming Soon...</p>
-        </div>
-      </div>
-    </div>
+    </Router>
   );
 }
 
