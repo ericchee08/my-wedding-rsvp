@@ -1,9 +1,0 @@
-.rsvp-container{
-  background-image: url("./images/rsvp-background.jpg");
-  background-size: cover;
-  background-position: center;
-  height: 40rem; 
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
