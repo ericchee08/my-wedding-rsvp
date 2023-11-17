@@ -72,23 +72,23 @@ const RsvpSection = () => {
         <div className="rsvp-section-container">
         <div className="rsvp-container">
             <div className="rsvp-headers">
-            <p>Eric & Lauren</p>
-            <p>Calke Abbey</p>
-            <p>Monday, June 10, 2024</p>
+                <p>Eric & Lauren</p>
+                <p>Calke Abbey</p>
+                <p>Monday, June 10, 2024</p>
             </div>
 
             <form onSubmit={(e) => e.preventDefault()}>
             <div className="rsvp-input-container">
-                <div className="input-name">
-                <label htmlFor="firstName">First Name</label>
-                <input type="text" id="firstName" value={formData.firstName}
-                    onChange={(e) => handleInputChange("firstName", e.target.value)}/>
+                <div className="input-names">
+                    <label htmlFor="firstName">First Name</label>
+                    <input type="text" id="firstName" value={formData.firstName}
+                        onChange={(e) => handleInputChange("firstName", e.target.value)}/>
                 </div>
                 
-                <div className="input-name">
-                <label htmlFor="lastName">Last Name</label>
-                <input type="text" id="lastName" value={formData.lastName}
-                    onChange={(e) => handleInputChange("lastName", e.target.value)}/>
+                <div className="input-names">
+                    <label htmlFor="lastName">Last Name</label>
+                    <input type="text" id="lastName" value={formData.lastName}
+                        onChange={(e) => handleInputChange("lastName", e.target.value)}/>
                 </div>
             </div>
 
@@ -98,14 +98,14 @@ const RsvpSection = () => {
                 onClick={() => handleButtonClick("attending")}>I can attend
                 </div>
                 <div className={`attendance-button ${response === "notAttending" && "selected"}`}
-                onClick={() => handleButtonClick("notAttending")}>Sorry I can't attend
+                onClick={() => handleButtonClick("notAttending")}>Sorry I can not attend
                 </div>
             </div>
 
             {response === "attending" && (
                 <div className="attending">
-                <label htmlFor="preferredDishes">1. What dishes would you prefer at our wedding? *</label>
-                <div className="food-select-container">
+                <label htmlFor="preferredDishes">1. What dishes would you prefer at our wedding?</label>
+                <div className="select-container">
                     <div className={`box-select ${formData.preferredDishes.includes("Chicken") && "selected"}`}
                     onClick={() => handleFoodPreferenceSelect("Chicken")}>Chicken
                     </div>
@@ -119,8 +119,8 @@ const RsvpSection = () => {
                     </div>
                 </div>
 
-                <label htmlFor="allergies">2. Do you have any allergies/dietaries requirements? *</label>
-                <div className="allergy-select-container">
+                <label htmlFor="allergies">2. Do you have any allergies/dietaries requirements?</label>
+                <div className="select-container">
                     <div className={`box-select ${formData.allergies === "Yes" && "selected"}`}
                         onClick={() => handleInputChange("allergies", "Yes")}>Yes
                     </div>
@@ -128,12 +128,12 @@ const RsvpSection = () => {
                         onClick={() => handleInputChange("allergies", "No")}>No
                     </div>
                 </div>
-
+                <div className="select-container">
                 <textarea id="allergiesInfo" className="allergy-input" value={formData.allergiesInfo}
                     onChange={(e) => handleInputChange("allergiesInfo", e.target.value)}/>
-                    
-                <label htmlFor="stayingForEveningFood">3. Will you be staying for evening food? *</label>
-                <div className="food-select-container">
+                </div>
+                <label htmlFor="stayingForEveningFood">3. Will you be staying for evening food?</label>
+                <div className="select-container">
                     <div className={`box-select ${formData.stayingForEveningFood === "Yes" && "selected"}`}
                         onClick={() => handleInputChange("stayingForEveningFood", "Yes")}>Yes
                     </div>
@@ -141,10 +141,11 @@ const RsvpSection = () => {
                         onClick={() => handleInputChange("stayingForEveningFood", "No")}>No
                     </div>
                 </div>
-
                 <label htmlFor="additionalInfo">4. Additional Information (Optional)</label>
-                <textarea id="additionalInfo" className="additional-input" value={formData.additionalInfo}
-                    onChange={(e) => handleInputChange("additionalInfo", e.target.value)}/>
+                <div className="select-container">
+                    <textarea id="additionalInfo" className="additional-input" value={formData.additionalInfo}
+                        onChange={(e) => handleInputChange("additionalInfo", e.target.value)}/>
+                </div>
                 <button className="submit-button" onClick={handleSubmit} disabled={!formValid}>
                     Submit
                 </button>
