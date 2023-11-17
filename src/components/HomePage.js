@@ -5,7 +5,7 @@ const HomePage = () => {
     <div className="home-page-container">
       <div className="header-container">
           <p id='title' >Eric & Lauren</p>
-          <p id='date'>Monday, June 10, 2024</p>
+          <p id='date'>Monday June 10 2024</p>
           <Link to="/rsvp" id="rsvp"> RSVP</Link>
       </div>
       <div className="container">

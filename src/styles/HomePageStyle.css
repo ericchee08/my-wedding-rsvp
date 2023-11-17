@@ -8,11 +8,17 @@
     flex-direction: column;
 }
 
-#title {
-    font-size: 3.2rem;
-    margin-top: 18rem;
-    margin-bottom: 8rem;
+.schedule-container {
     text-align: center;
+}
+
+#title {
+    font-size: 5.5rem;
+    margin-top: 18rem;
+    margin-bottom: 5rem;
+    font-weight: 400;
+    text-align: center;
+    font-family: 'Parisienne', cursive;
 }
 
 #date {
@@ -28,15 +34,17 @@
     margin-top: 1rem;
     font-size: 1.5rem;
     border: black solid 1px;
-    border-radius: 0.3rem;
-    padding: 0.6rem 0.8rem 0.5rem 0.8rem;
+    border-radius: 0.8rem;
+    padding: 0.5rem 0.8rem 0.4rem 0.8rem;
     text-decoration: none;
     color: inherit;
+    transition: 0.8s;
 }
 
 #rsvp:hover {
-    /* background-color: #f3dfcb; */
-    transition: 0.3s;
+    background-color: rgba(74, 89, 65, 0.5);
+    border-radius: 2.5rem;
+    color: lavender;
 }
 
 @media (max-width: 712px) {
