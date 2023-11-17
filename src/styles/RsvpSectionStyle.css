@@ -3,7 +3,6 @@
     height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
 }
 
@@ -12,6 +11,7 @@
     border: black solid 1px;
     border-radius: 0.3rem;
     width: 38rem;
+    margin-top: 2.5rem;
 }
 
 .rsvp-headers {
@@ -47,7 +47,6 @@ form {
     border-radius: 0.3rem;
     padding: 0.5rem 0.5rem;
     margin: 0.2rem
-    
 }
 
 #back{
@@ -62,4 +61,46 @@ form {
 #back-button {
     text-decoration: none;
     color: inherit;
+}
+
+.attending {
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+}
+
+.food-select-container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.box-select {
+    border: black solid 1px;
+    width: 100%;
+    text-align: center;
+    margin: 0.3rem 0;
+}
+
+.allergy-input, .additional-input {
+    height: 5rem;
+    resize: none;
+}
+
+.submit-button {
+    display: flex;
+    margin: 0 auto;
+    border: black solid 1px;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+    border-radius: 0.3rem;
+}
+
+.attendance-button.selected {
+    background-color: #3498db; /* Change this to the background color you want for selected items */
+    color: #fff; /* Change this to the text color you want for selected items */
+  }
+
+.box-select.selected {
+    background-color: #3498db; /* Change this to the background color you want for selected items */
+    color: #fff; /* Change this to the text color you want for selected items */
 }
