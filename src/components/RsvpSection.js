@@ -5,12 +5,14 @@ import emailjs from "emailjs-com";
 
 const RsvpSection = () => {
     const [response, setResponse] = useState("");
+    const [formValid, setFormValid] = useState(false);
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
         attending: "",
         preferredDishes: "",
         allergies: "",
+        allergiesInfo: "",
         stayingForEveningFood: "",
         additionalInfo: "",
     });
@@ -26,6 +28,10 @@ const RsvpSection = () => {
             ...prevFormData,
             [field]: value,
         }));
+
+        const requiredFields = ["firstName", "lastName", "attending", "preferredDishes", "stayingForEveningFood", "allergies", "allergiesInfo"];
+        const isFormComplete = requiredFields.every((fieldName) => formData[fieldName] !== "");
+        setFormValid(isFormComplete);
     };
 
     const handleFoodPreferenceSelect = (food) => {
@@ -35,28 +41,32 @@ const RsvpSection = () => {
     };
   
     const handleSubmit = () => {
-        console.log("Form Data:", formData);
-        const serviceId = process.env.REACT_APP_SERVICE_ID;
-        const templateId = process.env.REACT_APP_TEMPLATE_ID;
-        const publicKey = process.env.REACT_APP_PUBLIC_KEY;
-        const hiddenForm = document.createElement("form");
-
-        for (const key in formData) {
-            const input = document.createElement("input");
-            input.type = "hidden";
-            input.name = key;
-            input.value = formData[key];
-            hiddenForm.appendChild(input);
-        }
-
-        document.body.appendChild(hiddenForm);
-
-        emailjs.sendForm(serviceId, templateId, hiddenForm, publicKey)
-            .then((response) => {console.log("Email sent successfully:", response);})
-            .catch((error) => {
-                console.error("Email failed to send:", error);
+        if (formValid) {
+            console.log("Form Data:", formData);
+            const serviceId = process.env.REACT_APP_SERVICE_ID;
+            const templateId = process.env.REACT_APP_TEMPLATE_ID;
+            const publicKey = process.env.REACT_APP_PUBLIC_KEY;
+            const hiddenForm = document.createElement("form");
+    
+            for (const key in formData) {
+                const input = document.createElement("input");
+                input.type = "hidden";
+                input.name = key;
+                input.value = formData[key];
+                hiddenForm.appendChild(input);
+            }
+    
+            document.body.appendChild(hiddenForm);
+    
+            emailjs.sendForm(serviceId, templateId, hiddenForm, publicKey)
+                .then((response) => {console.log("Email sent successfully:", response);})
+                .catch((error) => {
+                    console.error("Email failed to send:", error);
             });
-        };
+        } else {
+            alert("Please fill out all the fields before submitting.");
+        }
+    };
 
     return (
         <div className="rsvp-section-container">
@@ -94,7 +104,7 @@ const RsvpSection = () => {
 
             {response === "attending" && (
                 <div className="attending">
-                <label htmlFor="preferredDishes">1. What dishes would you prefer at our wedding?</label>
+                <label htmlFor="preferredDishes">1. What dishes would you prefer at our wedding? *</label>
                 <div className="food-select-container">
                     <div className={`box-select ${formData.preferredDishes.includes("Chicken") && "selected"}`}
                     onClick={() => handleFoodPreferenceSelect("Chicken")}>Chicken
@@ -109,27 +119,35 @@ const RsvpSection = () => {
                     </div>
                 </div>
 
-                <label htmlFor="allergies">2. Do you have any allergies?</label>
-                <textarea id="allergies" className="allergy-input" value={formData.allergies}
-                    onChange={(e) => handleInputChange("allergies", e.target.value)}/>
+                <label htmlFor="allergies">2. Do you have any allergies/dietaries requirements? *</label>
+                <div className="allergy-select-container">
+                    <div className={`box-select ${formData.allergies === "Yes" && "selected"}`}
+                        onClick={() => handleInputChange("allergies", "Yes")}>Yes
+                    </div>
+                    <div className={`box-select ${formData.allergies === "No" && "selected"}`}
+                        onClick={() => handleInputChange("allergies", "No")}>No
+                    </div>
+                </div>
 
-                <label htmlFor="stayingForEveningFood">3. Will you be staying for evening food?</label>
+                <textarea id="allergiesInfo" className="allergy-input" value={formData.allergiesInfo}
+                    onChange={(e) => handleInputChange("allergiesInfo", e.target.value)}/>
+                    
+                <label htmlFor="stayingForEveningFood">3. Will you be staying for evening food? *</label>
                 <div className="food-select-container">
                     <div className={`box-select ${formData.stayingForEveningFood === "Yes" && "selected"}`}
-                    onClick={() => handleInputChange("stayingForEveningFood", "Yes")}>Yes
+                        onClick={() => handleInputChange("stayingForEveningFood", "Yes")}>Yes
                     </div>
                     <div className={`box-select ${formData.stayingForEveningFood === "No" && "selected"}`}
-                    onClick={() => handleInputChange("stayingForEveningFood", "No")}>No
+                        onClick={() => handleInputChange("stayingForEveningFood", "No")}>No
                     </div>
                 </div>
 
-                <label htmlFor="additionalInfo">4. Additional Information</label>
+                <label htmlFor="additionalInfo">4. Additional Information (Optional)</label>
                 <textarea id="additionalInfo" className="additional-input" value={formData.additionalInfo}
                     onChange={(e) => handleInputChange("additionalInfo", e.target.value)}/>
-
-                <div className="submit-button" onClick={handleSubmit}>
+                <button className="submit-button" onClick={handleSubmit} disabled={!formValid}>
                     Submit
-                </div>
+                </button>
 
                 </div>
             )}
