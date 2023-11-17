@@ -10,8 +10,9 @@
 
 #title {
     font-size: 3.2rem;
-    margin-top: 18.5rem;
+    margin-top: 18rem;
     margin-bottom: 8rem;
+    text-align: center;
 }
 
 #date {
@@ -36,4 +37,17 @@
 #rsvp:hover {
     /* background-color: #f3dfcb; */
     transition: 0.3s;
+}
+
+@media (max-width: 712px) {
+
+    .header-container{
+        margin: 0 auto;
+        max-width: 100%;
+    }
+
+    #title{
+        margin-top: 5rem;
+        margin: 5rem;
+    }
 }
