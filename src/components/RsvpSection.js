@@ -15,10 +15,6 @@ const RsvpSection = () => {
         additionalInfo: "",
     });
 
-    const serviceId = "";
-    const templateId = "";
-    const publicKey = "";
-
     const handleButtonClick = (responseType) => {
         const updateAttendance = responseType;
         handleInputChange("attending", updateAttendance)
@@ -38,27 +34,30 @@ const RsvpSection = () => {
         handleInputChange("preferredDishes", updatedDishes);
     };
   
-
     const handleSubmit = () => {
         console.log("Form Data:", formData);
-    const hiddenForm = document.createElement("form");
+        const serviceId = process.env.REACT_APP_SERVICE_ID;
+        const templateId = process.env.REACT_APP_TEMPLATE_ID;
+        const publicKey = process.env.REACT_APP_PUBLIC_KEY;
+        console.log(serviceId)
+        const hiddenForm = document.createElement("form");
 
-    for (const key in formData) {
-        const input = document.createElement("input");
-        input.type = "hidden";
-        input.name = key;
-        input.value = formData[key];
-        hiddenForm.appendChild(input);
-    }
+        for (const key in formData) {
+            const input = document.createElement("input");
+            input.type = "hidden";
+            input.name = key;
+            input.value = formData[key];
+            hiddenForm.appendChild(input);
+        }
 
-    document.body.appendChild(hiddenForm);
+        document.body.appendChild(hiddenForm);
 
-    emailjs.sendForm(serviceId, templateId, hiddenForm, publicKey)
-        .then((response) => {console.log("Email sent successfully:", response);})
-        .catch((error) => {
-            console.error("Email failed to send:", error);
-        });
-    };
+        emailjs.sendForm(serviceId, templateId, hiddenForm, publicKey)
+            .then((response) => {console.log("Email sent successfully:", response);})
+            .catch((error) => {
+                console.error("Email failed to send:", error);
+            });
+        };
 
     return (
         <div className="rsvp-section-container">
