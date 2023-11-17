@@ -165,7 +165,13 @@ const RsvpSection = () => {
                 </div>
             )}
             {response === "notAttending" && (
-                <div className="notAttending">placeholder</div>
+                <div className="notAttending">
+                    <div className="select-container">
+                        <label htmlFor="stayingForEveningFood">Would you like to leave a message for the bride and groom</label>
+                        <textarea placeholder="placeholder" id="allergiesInfo" className="allergy-input" value={formData.allergiesInfo}
+                        onChange={(e) => handleInputChange("allergiesInfo", e.target.value)}/>
+                    </div>
+                </div>
             )}
             </form>
         </div>
