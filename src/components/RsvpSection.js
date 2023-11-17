@@ -7,7 +7,7 @@ const RsvpSection = () => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
-    attending: false,
+    attending: "",
     preferredDishes: "",
     allergies: "",
     stayingForEveningFood: "",
@@ -15,6 +15,8 @@ const RsvpSection = () => {
   });
 
   const handleButtonClick = (responseType) => {
+    const updateAttendance = responseType;
+    handleInputChange("attending", updateAttendance)
     setResponse(responseType);
   };
 
