@@ -39,7 +39,6 @@ const RsvpSection = () => {
         const serviceId = process.env.REACT_APP_SERVICE_ID;
         const templateId = process.env.REACT_APP_TEMPLATE_ID;
         const publicKey = process.env.REACT_APP_PUBLIC_KEY;
-        console.log(serviceId)
         const hiddenForm = document.createElement("form");
 
         for (const key in formData) {
