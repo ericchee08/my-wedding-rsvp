@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/RsvpSectionStyle.css";
 import emailjs from "emailjs-com";
+import { useNavigate } from "react-router-dom";
 
 const RsvpSection = () => {
     const [response, setResponse] = useState("");
@@ -13,9 +14,10 @@ const RsvpSection = () => {
         preferredDishes: "",
         allergies: "",
         allergiesInfo: "",
-        stayingForEveningFood: "",
         preferredEveningDishes: ""
     });
+    const navigate = useNavigate();
+
 
     const handleButtonClick = (responseType) => {
         const updateAttendance = responseType;
@@ -29,7 +31,7 @@ const RsvpSection = () => {
             [field]: value,
         }));
 
-        const requiredFields = ["firstName", "lastName", "attending", "preferredDishes", "stayingForEveningFood", "allergies", "allergiesInfo"];
+        const requiredFields = ["firstName", "lastName", "attending", "preferredDishes", "allergies", "allergiesInfo"];
         const isFormComplete = requiredFields.every((fieldName) => formData[fieldName] !== "");
         setFormValid(isFormComplete);
     };
@@ -63,7 +65,8 @@ const RsvpSection = () => {
             document.body.appendChild(hiddenForm);
     
             emailjs.sendForm(serviceId, templateId, hiddenForm, publicKey)
-                .then((response) => {console.log("Email sent successfully:", response);})
+                .then((response) => {console.log("Email sent successfully:", response);
+                    navigate("/confirmation");})
                 .catch((error) => {
                     console.error("Email failed to send:", error);
             });
@@ -77,7 +80,7 @@ const RsvpSection = () => {
         <div className="rsvp-container">
             <div className="rsvp-headers">
                 <p className="rsvp-name">Eric & Lauren</p>
-                <p>Calke Abbey</p>
+                <p>The Riding School, Calke Abbey</p>
                 <p>Monday June 10 2024</p>
             </div>
 
@@ -123,32 +126,8 @@ const RsvpSection = () => {
                     </div>
                 </div>
 
-                <label htmlFor="allergies">2. Do you have any allergies/dietary requirements?</label>
+                <label id="choosePizza" htmlFor="allergies">2. Choose your pizza 🍕</label>
                 <div className="select-container">
-                    <div className={`box-select ${formData.allergies === "Yes" && "selected"}`}
-                        onClick={() => handleInputChange("allergies", "Yes")}>Yes
-                    </div>
-                    <div className={`box-select ${formData.allergies === "No" && "selected"}`}
-                        onClick={() => handleInputChange("allergies", "No")}>No
-                    </div>
-                </div>
-                <div className="select-container">
-                <textarea placeholder="Please enter any allergies or dietary requirements we need to know about" id="allergiesInfo" className="allergy-input" value={formData.allergiesInfo}
-                    onChange={(e) => handleInputChange("allergiesInfo", e.target.value)}/>
-                </div>
-                <label htmlFor="stayingForEveningFood">3. Will you be joining us for the evening pizza buffet? </label>
-                <div className="select-container">
-                    <div className={`box-select ${formData.stayingForEveningFood === "Yes" && "selected"}`}
-                        onClick={() => handleInputChange("stayingForEveningFood", "Yes")}>Yes
-                    </div>
-                    <div className={`box-select ${formData.stayingForEveningFood === "No" && "selected"}`}
-                        onClick={() => handleInputChange("stayingForEveningFood", "No")}>No
-                    </div>
-                </div>
-                
-                
-                <div className="select-container">
-                    <label id="choosePizza" htmlFor="allergies">Choose your pizza 🍕</label>
                     <div className={`box-select ${formData.preferredEveningDishes.includes("Margherita") && "selected"}`}
                     onClick={() => handleEveningFoodPreferenceSelect("Margherita")}>Margherita
                     </div>
@@ -161,6 +140,21 @@ const RsvpSection = () => {
                     onClick={() => handleEveningFoodPreferenceSelect("Vegetable")}>Vegetable (v)
                     </div>
                 </div>
+
+                <label htmlFor="allergies">3. Do you have any allergies/dietary requirements?</label>
+                <div className="select-container">
+                    <div className={`box-select ${formData.allergies === "Yes" && "selected"}`}
+                        onClick={() => handleInputChange("allergies", "Yes")}>Yes
+                    </div>
+                    <div className={`box-select ${formData.allergies === "No" && "selected"}`}
+                        onClick={() => handleInputChange("allergies", "No")}>No
+                    </div>
+                </div>
+                <div className="select-container">
+                <textarea placeholder="Please enter any allergies or dietary requirements we need to know about" id="allergiesInfo" className="allergy-input" value={formData.allergiesInfo}
+                    onChange={(e) => handleInputChange("allergiesInfo", e.target.value)}/>
+                </div>
+
                 <button className="submit-button" onClick={handleSubmit} disabled={!formValid}>
                     Submit
                 </button>
@@ -169,7 +163,7 @@ const RsvpSection = () => {
             {response === "notAttending" && (
                 <div className="notAttending">
                     <div className="select-container">
-                        <label htmlFor="stayingForEveningFood">Leave a message for the bride and groom...</label>
+                        <label htmlFor="">Leave a message for the bride and groom...</label>
                         <textarea placeholder="This is optional" id="allergiesInfo" className="allergy-input" value={formData.allergiesInfo}
                         onChange={(e) => handleInputChange("allergiesInfo", e.target.value)}/>
                     </div>
