@@ -12,9 +12,9 @@ const RsvpSection = () => {
         lastName: "",
         attending: "",
         preferredDishes: "",
+        preferredEveningDishes: "",
         allergies: "",
-        allergiesInfo: "",
-        preferredEveningDishes: ""
+        allergiesInfo: ""
     });
     const navigate = useNavigate();
 
@@ -35,41 +35,31 @@ const RsvpSection = () => {
         const isFormComplete = requiredFields.every((fieldName) => formData[fieldName] !== "");
         setFormValid(isFormComplete);
     };
-
-    const handleFoodPreferenceSelect = (food) => {
-        const updatedDishes = food; 
-        handleInputChange("preferredDishes", updatedDishes);
-    };
-
-    const handleEveningFoodPreferenceSelect = (food) => {
-        const updatedEveningDishes = food; 
-        handleInputChange("preferredEveningDishes", updatedEveningDishes);
-    };
   
     const handleSubmit = () => {
         if (formValid) {
             console.log("Form Data:", formData);
-            const serviceId = process.env.REACT_APP_SERVICE_ID;
-            const templateId = process.env.REACT_APP_TEMPLATE_ID;
-            const publicKey = process.env.REACT_APP_PUBLIC_KEY;
-            const hiddenForm = document.createElement("form");
+            // const serviceId = process.env.REACT_APP_SERVICE_ID;
+            // const templateId = process.env.REACT_APP_TEMPLATE_ID;
+            // const publicKey = process.env.REACT_APP_PUBLIC_KEY;
+            // const hiddenForm = document.createElement("form");
     
-            for (const key in formData) {
-                const input = document.createElement("input");
-                input.type = "hidden";
-                input.name = key;
-                input.value = formData[key];
-                hiddenForm.appendChild(input);
-            }
+            // for (const key in formData) {
+            //     const input = document.createElement("input");
+            //     input.type = "hidden";
+            //     input.name = key;
+            //     input.value = formData[key];
+            //     hiddenForm.appendChild(input);
+            // }
     
-            document.body.appendChild(hiddenForm);
+            // document.body.appendChild(hiddenForm);
     
-            emailjs.sendForm(serviceId, templateId, hiddenForm, publicKey)
-                .then((response) => {console.log("Email sent successfully:", response);
-                    navigate("/confirmation");})
-                .catch((error) => {
-                    console.error("Email failed to send:", error);
-            });
+            // emailjs.sendForm(serviceId, templateId, hiddenForm, publicKey)
+            //     .then((response) => {console.log("Email sent successfully:", response);
+            //         navigate("/confirmation");})
+            //     .catch((error) => {
+            //         console.error("Email failed to send:", error);
+            // });
         } else {
             alert("Please fill out all the fields before submitting.");
         }
@@ -114,30 +104,30 @@ const RsvpSection = () => {
                 <label htmlFor="preferredDishes">1. What would you like to eat during the wedding breakfast? 😋</label>
                 <div className="select-container">
                     <div className={`box-select ${formData.preferredDishes.includes("Beef") && "selected"}`}
-                    onClick={() => handleFoodPreferenceSelect("Beef")}>Beef
+                    onClick={() => handleInputChange("preferredDishes","Beef")}>Beef
                     </div>
                     <div
                     className={`box-select ${formData.preferredDishes.includes("Duck") && "selected"}`}
-                    onClick={() => handleFoodPreferenceSelect("Duck")}>Duck
+                    onClick={() => handleInputChange("preferredDishes","Duck")}>Duck
                     </div>
                     <div
                     className={`box-select ${formData.preferredDishes.includes("Risotto") && "selected"}`}
-                    onClick={() => handleFoodPreferenceSelect("Risotto")}>Risotto (v)
+                    onClick={() => handleInputChange("preferredDishes","Risotto")}>Risotto (v)
                     </div>
                 </div>
 
                 <label id="choosePizza" htmlFor="allergies">2. Choose your pizza 🍕</label>
                 <div className="select-container">
                     <div className={`box-select ${formData.preferredEveningDishes.includes("Margherita") && "selected"}`}
-                    onClick={() => handleEveningFoodPreferenceSelect("Margherita")}>Margherita
+                    onClick={() => handleInputChange("preferredEveningDishes","Margherita")}>Margherita
                     </div>
                     <div
                     className={`box-select ${formData.preferredEveningDishes.includes("BBQChicken") && "selected"}`}
-                    onClick={() => handleEveningFoodPreferenceSelect("BBQChicken")}>BBQ Chicken
+                    onClick={() => handleInputChange("preferredEveningDishes","BBQChicken")}>BBQ Chicken
                     </div>
                     <div
                     className={`box-select ${formData.preferredEveningDishes.includes("Vegetable") && "selected"}`}
-                    onClick={() => handleEveningFoodPreferenceSelect("Vegetable")}>Vegetable (v)
+                    onClick={() => handleInputChange("preferredEveningDishes","Vegetable")}>Vegetable (v)
                     </div>
                 </div>
 
