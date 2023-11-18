@@ -179,7 +179,7 @@ const RsvpSection = () => {
         </div>
         <div id="back">
             <Link to="/" id="back-button">
-            Back
+                Back
             </Link>
         </div>
         </div>
