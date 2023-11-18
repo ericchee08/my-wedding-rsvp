@@ -133,7 +133,7 @@ const RsvpSection = () => {
                     </div>
                 </div>
                 <div className="select-container">
-                <textarea placeholder="please enter any allergies or dietary requirements we need to know about" id="allergiesInfo" className="allergy-input" value={formData.allergiesInfo}
+                <textarea placeholder="Please enter any allergies or dietary requirements we need to know about" id="allergiesInfo" className="allergy-input" value={formData.allergiesInfo}
                     onChange={(e) => handleInputChange("allergiesInfo", e.target.value)}/>
                 </div>
                 <label htmlFor="stayingForEveningFood">3. Will you be joining us for the evening pizza buffet? </label>
@@ -169,8 +169,8 @@ const RsvpSection = () => {
             {response === "notAttending" && (
                 <div className="notAttending">
                     <div className="select-container">
-                        <label htmlFor="stayingForEveningFood">Would you like to leave a message for the bride and groom?</label>
-                        <textarea placeholder="placeholder" id="allergiesInfo" className="allergy-input" value={formData.allergiesInfo}
+                        <label htmlFor="stayingForEveningFood">Leave a message for the bride and groom...</label>
+                        <textarea placeholder="This is optional" id="allergiesInfo" className="allergy-input" value={formData.allergiesInfo}
                         onChange={(e) => handleInputChange("allergiesInfo", e.target.value)}/>
                     </div>
                 </div>

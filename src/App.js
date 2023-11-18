@@ -6,7 +6,7 @@ import RsvpSection from './components/RsvpSection';
 function App() {
   return (
     <Router>
-      <div className="App">
+      <div id="app">
         <Routes>
           <Route path="/" Component={HomePage}/>
           <Route path="/rsvp" Component={RsvpSection}/>
