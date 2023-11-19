@@ -198,7 +198,7 @@ const RsvpSection = () => {
                 </div>
             )}
 
-            {dayOption === "fullDay" && attendanceResponse === "attending" && (renderPreferredDishes(1, "What would you like to eat during the wedding breakfast? 😋", "preferredDishes", "Beef", "Duck", "Risoto (v)"))}
+            {dayOption === "fullDay" && attendanceResponse === "attending" && (renderPreferredDishes(1, "What would you like to eat during the wedding breakfast? 😋", "preferredDishes", "Beef", "Duck", "Risotto (v)"))}
             {dayOption === "day" && attendanceResponse === "attending" && renderPreferredDishes(1, "What would you like to eat during the wedding breakfast? 😋", "preferredDishes", "Beef", "Duck", "Risoto (v)")}
 
             {dayOption === "fullDay" && attendanceResponse === "attending" && renderPreferredDishes(2, "Choose your pizza 🍕", "preferredEveningDishes", "Margherita", 'BBQ Chicken', 'Vegetable (v)')}
