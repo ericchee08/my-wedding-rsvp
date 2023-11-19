@@ -8,12 +8,12 @@ const HomePage = () => {
           <p id='date'>Monday June 10 2024</p>
           <Link to="/rsvp" id="rsvp"> RSVP</Link>
       </div>
-      <div className="container">
+      {/* <div className="container">
           <div className="schedule-container">
             <h2>Schedule</h2>
             <p>Coming Soon...</p>
           </div>
-      </div>
+      </div> */}
     </div>
   )
 }

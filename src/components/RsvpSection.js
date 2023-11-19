@@ -20,18 +20,30 @@ const RsvpSection = () => {
     });
     const navigate = useNavigate();
 
+    const resetFields = () => {
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            allergiesInfo: "",
+            allergies: "",
+            preferredEveningDishes: "",
+            preferredDishes: ""
+        }));
+    };
+
     const handleAttendanceButtonClick = (responseType) => {
         const updateAttendance = responseType;
         handleInputChange("attending", updateAttendance)
-        handleInputChange("dayOption", updateAttendance)
         setAttendanceResponse(responseType);
-        setDayOption(responseType);
+        updateFormValidation(dayOption);
     };
 
     const handleDayOptionButtonClick = (responseType) => {
-        const updateAttendance = responseType;
-        handleInputChange("dayOption", updateAttendance)
+        handleInputChange("dayOption", responseType);
         setDayOption(responseType);
+        resetFields();
+        updateFormValidation(responseType);
+        console.log(formData)
+        console.log(formValid)
     };
 
     const handleInputChange = (field, value) => {
@@ -39,22 +51,30 @@ const RsvpSection = () => {
             ...prevFormData,
             [field]: value,
         }));
-        // if dayOption is equal to "fullDay"
-        // const requiredFields = ["firstName", "lastName", "attending", "preferredDishes", ""preferredEveningDishes" "allergies", "allergiesInfo"];
-        // else if dayOption is equal to "day"
-        // const requiredFields = ["firstName", "lastName", "attending", "preferredDishes", "allergies", "allergiesInfo"];
-        // else if dayOption is equal to "evening"
-        // const requiredFields = ["firstName", "lastName", "attending", "preferredEveningDishes", "allergies", "allergiesInfo"];
+        updateFormValidation(dayOption);
+    };
 
-        const requiredFields = ["firstName", "lastName", "attending", "preferredDishes", "allergies", "allergiesInfo"];
+    const updateFormValidation = (responseType) => {
+        const requiredFields = getRequiredFields(responseType);
         const isFormComplete = requiredFields.every((fieldName) => formData[fieldName] !== "");
         setFormValid(isFormComplete);
     };
+
+    const getRequiredFields = (dayOption) => {
+        if (dayOption === "fullDay") {
+            return ["firstName", "lastName", "attending", "preferredDishes", "preferredEveningDishes", "allergies", "allergiesInfo"];
+        } else if (dayOption === "day") {
+            return ["firstName", "lastName", "attending", "preferredDishes", "allergies", "allergiesInfo"];
+        } else if (dayOption === "evening") {
+            return ["firstName", "lastName", "attending", "preferredEveningDishes", "allergies", "allergiesInfo"];
+        } else {
+            return ["firstName", "lastName", "attending", "preferredDishes", "preferredEveningDishes", "allergies", "allergiesInfo"];
+        }
+    };
   
     const handleSubmit = () => {
+        updateFormValidation(dayOption)
         if (formValid) {
-            // add if AllDayFormValid, DayFormValid, EveningFordValid
-
             console.log("Form Data:", formData);
             // const serviceId = process.env.REACT_APP_SERVICE_ID;
             // const templateId = process.env.REACT_APP_TEMPLATE_ID;
@@ -78,7 +98,8 @@ const RsvpSection = () => {
             //         console.error("Email failed to send:", error);
             // });
         } else {
-            alert("Please fill out all the fields before submitting.");
+            console.log("form invalid")
+            // alert("Please fill out all the fields before submitting.");
         }
     };
 
@@ -133,7 +154,7 @@ const RsvpSection = () => {
                     </div>
                 </div>
             )}
-            {dayOption === "fullDay" && (
+            {dayOption === "fullDay" && attendanceResponse === "attending" &&  (
                 <div className="attending">
                 <label htmlFor="preferredDishes">1. What would you like to eat during the wedding breakfast? 😋</label>
                 <div className="select-container">
@@ -179,13 +200,13 @@ const RsvpSection = () => {
                     onChange={(e) => handleInputChange("allergiesInfo", e.target.value)}/>
                 </div>
 
-                <button className="submit-button" onClick={handleSubmit} disabled={!formValid}>
+                <div className="submit-button" onClick={handleSubmit}>
                     Submit
-                </button>
+                </div>
                 </div>
             )}
 
-            {dayOption === "day" && (<div className="attending">
+            {dayOption === "day" && attendanceResponse === "attending" && (<div className="attending">
                 <label htmlFor="preferredDishes">1. What would you like to eat during the wedding breakfast? 😋</label>
                 <div className="select-container">
                     <div className={`box-select ${formData.preferredDishes.includes("Beef") && "selected"}`}
@@ -215,11 +236,12 @@ const RsvpSection = () => {
                     onChange={(e) => handleInputChange("allergiesInfo", e.target.value)}/>
                 </div>
 
-                <button className="submit-button" onClick={handleSubmit} disabled={!formValid}>
+                <div className="submit-button" onClick={handleSubmit}>
                     Submit
-                </button>
+                </div>
                 </div>)}
-            {dayOption === "evening" && (<div className="attending">
+
+            {dayOption === "evening" && attendanceResponse === "attending" && (<div className="attending">
                 <label id="choosePizza" htmlFor="allergies">1. Choose your pizza 🍕</label>
                 <div className="select-container">
                     <div className={`box-select ${formData.preferredEveningDishes.includes("Margherita") && "selected"}`}
@@ -249,9 +271,9 @@ const RsvpSection = () => {
                     onChange={(e) => handleInputChange("allergiesInfo", e.target.value)}/>
                 </div>
 
-                <button className="submit-button" onClick={handleSubmit} disabled={!formValid}>
+                <div className="submit-button" onClick={handleSubmit}>
                     Submit
-                </button>
+                </div>
                 </div>)}
 
             {attendanceResponse === "notAttending" && (
