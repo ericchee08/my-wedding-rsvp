@@ -17,6 +17,7 @@ const RsvpSection = () => {
         preferredEveningDishes: "",
         allergies: "",
         allergiesInfo: "",
+        message: ""
     });
     const navigate = useNavigate();
 
@@ -220,8 +221,8 @@ const RsvpSection = () => {
                 <div className="notAttending">
                     <div className="select-container">
                         <label htmlFor="">Leave a message for the bride and groom...</label>
-                        <textarea placeholder="This is optional" value={formData.allergiesInfo}
-                        onChange={(e) => handleInputChange("allergiesInfo", e.target.value)}/>
+                        <textarea placeholder="This is optional" value={formData.message}
+                        onChange={(e) => handleInputChange("message", e.target.value)}/>
                     </div>
                 </div>
             )}
