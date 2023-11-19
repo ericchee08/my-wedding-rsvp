@@ -21,15 +21,16 @@ const RsvpSection = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        const validateForm = () => {
+            const requiredFields = getRequiredFields(dayOption);
+            const isFormValid = requiredFields.every(field => formData[field] !== "");
+            setFormValid(isFormValid);
+        };
+    
         validateForm();
     }, [formData, dayOption]);
 
-    const validateForm = () => {
-        const requiredFields = getRequiredFields(dayOption);
-        const isFormValid = requiredFields.every(field => formData[field] !== "");
-
-        setFormValid(isFormValid);
-    };
+    
 
     const getRequiredFields = (dayOption) => {
         if (dayOption === "fullDay") {
