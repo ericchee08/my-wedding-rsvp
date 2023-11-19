@@ -121,7 +121,7 @@ label{
     background-color:#C1E1C1;
 }
 
-.allergy-input, .additional-input {
+.text-area-input, .additional-input {
     height: 5rem;
     resize: none;
 }

@@ -23,7 +23,7 @@ const RsvpSection = () => {
 
     useEffect(() => {
         const validateForm = () => {
-            const requiredFields = getRequiredFields(dayOption);
+            const requiredFields = getRequiredFields(dayOption, formData.attending);
             const isFormValid = requiredFields.every(field => {
                 if (field === 'allergiesInfo' && formData.allergies === 'No') {
                     return true;
@@ -36,12 +36,12 @@ const RsvpSection = () => {
         validateForm();
     }, [formData, dayOption]);
 
-    const getRequiredFields = (dayOption) => {
-        if (dayOption === "fullDay") {
+    const getRequiredFields = (dayOption, attending) => {
+        if (dayOption === "fullDay" && attending === "attending") {
             return ["firstName", "lastName", "attending", "preferredDishes", "preferredEveningDishes", "allergies", "allergiesInfo"];
-        } else if (dayOption === "day") {
+        } else if (dayOption === "day" && attending === "attending") {
             return ["firstName", "lastName", "attending", "preferredDishes", "allergies", "allergiesInfo"];
-        } else if (dayOption === "evening") {
+        } else if (dayOption === "evening" && attending === "attending") {
             return ["firstName", "lastName", "attending", "preferredEveningDishes", "allergies", "allergiesInfo"];
         } else {
             return [];
@@ -54,7 +54,8 @@ const RsvpSection = () => {
             allergiesInfo: "",
             allergies: "",
             preferredEveningDishes: "",
-            preferredDishes: ""
+            preferredDishes: "",
+            message: ""
         }));
     };
 
@@ -62,6 +63,7 @@ const RsvpSection = () => {
         if (formData.firstName && formData.lastName) {
             handleInputChange("attending", responseType)
             setAttendanceResponse(responseType);
+            resetFields();
         } else {
             alert("Please enter your first name and last name before selecting attendance.");
         }
@@ -82,7 +84,7 @@ const RsvpSection = () => {
 
     const handleSubmit = () => {
         if (formValid) {
-            console.log("Form Data:", formData);
+            // console.log("Form Data:", formData);
             const serviceId = process.env.REACT_APP_SERVICE_ID;
             const templateId = process.env.REACT_APP_TEMPLATE_ID;
             const publicKey = process.env.REACT_APP_PUBLIC_KEY;
@@ -141,7 +143,7 @@ const RsvpSection = () => {
               <textarea
                 placeholder="Please enter any allergies or dietary requirements we need to know about"
                 id="allergiesInfo"
-                className="allergy-input"
+                className="text-area-input"
                 value={formData.allergiesInfo}
                 onChange={(e) => handleInputChange("allergiesInfo", e.target.value)}
               />
@@ -224,8 +226,11 @@ const RsvpSection = () => {
                 <div className="notAttending">
                     <div className="select-container">
                         <label htmlFor="">Leave a message for the bride and groom...</label>
-                        <textarea placeholder="This is optional" value={formData.message}
+                        <textarea placeholder="This is optional" value={formData.message} className="text-area-input"
                         onChange={(e) => handleInputChange("message", e.target.value)}/>
+                    </div>
+                    <div className="submit-button" onClick={handleSubmit}>
+                        Submit
                     </div>
                 </div>
             )}
