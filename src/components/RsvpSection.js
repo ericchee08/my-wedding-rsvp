@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../styles/RsvpSectionStyle.css";
 import emailjs from "emailjs-com";
@@ -20,6 +20,29 @@ const RsvpSection = () => {
     });
     const navigate = useNavigate();
 
+    useEffect(() => {
+        validateForm();
+    }, [formData, dayOption]);
+
+    const validateForm = () => {
+        const requiredFields = getRequiredFields(dayOption);
+        const isFormValid = requiredFields.every(field => formData[field] !== "");
+
+        setFormValid(isFormValid);
+    };
+
+    const getRequiredFields = (dayOption) => {
+        if (dayOption === "fullDay") {
+            return ["firstName", "lastName", "attending", "preferredDishes", "preferredEveningDishes", "allergies", "allergiesInfo"];
+        } else if (dayOption === "day") {
+            return ["firstName", "lastName", "attending", "preferredDishes", "allergies", "allergiesInfo"];
+        } else if (dayOption === "evening") {
+            return ["firstName", "lastName", "attending", "preferredEveningDishes", "allergies", "allergiesInfo"];
+        } else {
+            return [];
+        }
+    };
+    
     const resetFields = () => {
         setFormData((prevFormData) => ({
             ...prevFormData,
@@ -34,16 +57,12 @@ const RsvpSection = () => {
         const updateAttendance = responseType;
         handleInputChange("attending", updateAttendance)
         setAttendanceResponse(responseType);
-        updateFormValidation(dayOption);
     };
 
     const handleDayOptionButtonClick = (responseType) => {
         handleInputChange("dayOption", responseType);
         setDayOption(responseType);
         resetFields();
-        updateFormValidation(responseType);
-        console.log(formData)
-        console.log(formValid)
     };
 
     const handleInputChange = (field, value) => {
@@ -51,55 +70,35 @@ const RsvpSection = () => {
             ...prevFormData,
             [field]: value,
         }));
-        updateFormValidation(dayOption);
     };
 
-    const updateFormValidation = (responseType) => {
-        const requiredFields = getRequiredFields(responseType);
-        const isFormComplete = requiredFields.every((fieldName) => formData[fieldName] !== "");
-        setFormValid(isFormComplete);
-    };
-
-    const getRequiredFields = (dayOption) => {
-        if (dayOption === "fullDay") {
-            return ["firstName", "lastName", "attending", "preferredDishes", "preferredEveningDishes", "allergies", "allergiesInfo"];
-        } else if (dayOption === "day") {
-            return ["firstName", "lastName", "attending", "preferredDishes", "allergies", "allergiesInfo"];
-        } else if (dayOption === "evening") {
-            return ["firstName", "lastName", "attending", "preferredEveningDishes", "allergies", "allergiesInfo"];
-        } else {
-            return ["firstName", "lastName", "attending", "preferredDishes", "preferredEveningDishes", "allergies", "allergiesInfo"];
-        }
-    };
-  
     const handleSubmit = () => {
-        updateFormValidation(dayOption)
         if (formValid) {
             console.log("Form Data:", formData);
-            // const serviceId = process.env.REACT_APP_SERVICE_ID;
-            // const templateId = process.env.REACT_APP_TEMPLATE_ID;
-            // const publicKey = process.env.REACT_APP_PUBLIC_KEY;
-            // const hiddenForm = document.createElement("form");
+            const serviceId = process.env.REACT_APP_SERVICE_ID;
+            const templateId = process.env.REACT_APP_TEMPLATE_ID;
+            const publicKey = process.env.REACT_APP_PUBLIC_KEY;
+            const hiddenForm = document.createElement("form");
     
-            // for (const key in formData) {
-            //     const input = document.createElement("input");
-            //     input.type = "hidden";
-            //     input.name = key;
-            //     input.value = formData[key];
-            //     hiddenForm.appendChild(input);
-            // }
+            for (const key in formData) {
+                const input = document.createElement("input");
+                input.type = "hidden";
+                input.name = key;
+                input.value = formData[key];
+                hiddenForm.appendChild(input);
+            }
     
-            // document.body.appendChild(hiddenForm);
+            document.body.appendChild(hiddenForm);
     
-            // emailjs.sendForm(serviceId, templateId, hiddenForm, publicKey)
-            //     .then((attendanceResponse) => {console.log("Email sent successfully:", attendanceResponse);
-            //         navigate("/confirmation");})
-            //     .catch((error) => {
-            //         console.error("Email failed to send:", error);
-            // });
+            emailjs.sendForm(serviceId, templateId, hiddenForm, publicKey)
+                .then((attendanceResponse) => {console.log("Email sent successfully:", attendanceResponse);
+                    navigate("/confirmation");})
+                .catch((error) => {
+                    console.error("Email failed to send:", error);
+            });
         } else {
             console.log("form invalid")
-            // alert("Please fill out all the fields before submitting.");
+            alert("Please fill out all the fields before submitting.");
         }
     };
 
