@@ -5,12 +5,14 @@ import emailjs from "emailjs-com";
 import { useNavigate } from "react-router-dom";
 
 const RsvpSection = () => {
-    const [response, setResponse] = useState("");
+    const [response, setAttendanceResponse] = useState("");
+    const [dayOption, setDayOption] = useState("");
     const [formValid, setFormValid] = useState(false);
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
         attending: "",
+        dayOption: "",
         preferredDishes: "",
         preferredEveningDishes: "",
         allergies: "",
@@ -18,11 +20,16 @@ const RsvpSection = () => {
     });
     const navigate = useNavigate();
 
-
-    const handleButtonClick = (responseType) => {
+    const handleAttendanceButtonClick = (responseType) => {
         const updateAttendance = responseType;
         handleInputChange("attending", updateAttendance)
-        setResponse(responseType);
+        setAttendanceResponse(responseType);
+    };
+
+    const handleDayOptionButtonClick = (responseType) => {
+        const updateAttendance = responseType;
+        handleInputChange("dayOption", updateAttendance)
+        setDayOption(responseType);
     };
 
     const handleInputChange = (field, value) => {
@@ -30,6 +37,12 @@ const RsvpSection = () => {
             ...prevFormData,
             [field]: value,
         }));
+        // if dayOption is equal to "fullDay"
+        // const requiredFields = ["firstName", "lastName", "attending", "preferredDishes", ""preferredEveningDishes" "allergies", "allergiesInfo"];
+        // else if dayOption is equal to "day"
+        // const requiredFields = ["firstName", "lastName", "attending", "preferredDishes", "allergies", "allergiesInfo"];
+        // else if dayOption is equal to "evening"
+        // const requiredFields = ["firstName", "lastName", "attending", "preferredEveningDishes", "allergies", "allergiesInfo"];
 
         const requiredFields = ["firstName", "lastName", "attending", "preferredDishes", "allergies", "allergiesInfo"];
         const isFormComplete = requiredFields.every((fieldName) => formData[fieldName] !== "");
@@ -38,6 +51,8 @@ const RsvpSection = () => {
   
     const handleSubmit = () => {
         if (formValid) {
+            // add if AllDayFormValid, DayFormValid, EveningFordValid
+
             console.log("Form Data:", formData);
             // const serviceId = process.env.REACT_APP_SERVICE_ID;
             // const templateId = process.env.REACT_APP_TEMPLATE_ID;
@@ -92,14 +107,31 @@ const RsvpSection = () => {
             <div className="rsvp-buttons">
                 <div
                 className={`attendance-button ${response === "attending" && "selected"}`}
-                onClick={() => handleButtonClick("attending")}>Yes, I'll be there! 😄
+                onClick={() => handleAttendanceButtonClick("attending")}>Yes, I'll be there! 😄
                 </div>
                 <div className={`attendance-button ${response === "notAttending" && "selected"}`}
-                onClick={() => handleButtonClick("notAttending")}>Sorry, I can't be there 😔
+                onClick={() => handleAttendanceButtonClick("notAttending")}>Sorry, I can't be there 😔
                 </div>
             </div>
 
             {response === "attending" && (
+                <div className="select-container">
+                    <label htmlFor="dayOption">Will you be joining us for the:</label>
+                    <div className="rsvp-buttons">
+                        <div
+                        className={`day-option-button ${dayOption === "fullDay" && "selected"}`}
+                        onClick={() => handleDayOptionButtonClick("fullDay")}>Full Day
+                        </div>
+                        <div className={`day-option-button ${dayOption === "day" && "selected"}`}
+                        onClick={() => handleDayOptionButtonClick("day")}>Ceremony & Wedding Breakfast
+                        </div>
+                        <div className={`day-option-button ${dayOption === "evening" && "selected"}`}
+                        onClick={() => handleDayOptionButtonClick("evening")}>Evening Food & Party
+                        </div>
+                    </div>
+                </div>
+            )}
+            {dayOption === "fullDay" && (
                 <div className="attending">
                 <label htmlFor="preferredDishes">1. What would you like to eat during the wedding breakfast? 😋</label>
                 <div className="select-container">
@@ -150,6 +182,10 @@ const RsvpSection = () => {
                 </button>
                 </div>
             )}
+
+            {dayOption === "day" && (<></>)}
+            {dayOption === "evening" && (<></>)}
+
             {response === "notAttending" && (
                 <div className="notAttending">
                     <div className="select-container">
