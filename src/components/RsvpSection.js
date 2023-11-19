@@ -21,6 +21,8 @@ const RsvpSection = () => {
     });
     const navigate = useNavigate();
 
+    //VALIDATIONS
+
     useEffect(() => {
         const validateForm = () => {
             const requiredFields = getRequiredFields(dayOption, formData.attending);
@@ -59,6 +61,8 @@ const RsvpSection = () => {
         }));
     };
 
+    //INPUT/SELECT HANDLERS
+
     const handleAttendanceButtonClick = (responseType) => {
         if (formData.firstName && formData.lastName) {
             handleInputChange("attending", responseType)
@@ -82,35 +86,55 @@ const RsvpSection = () => {
         }));
     };
 
+    //SUBMIT LOGIC
+
     const handleSubmit = () => {
-        if (formValid) {
-            // console.log("Form Data:", formData);
-            const serviceId = process.env.REACT_APP_SERVICE_ID;
-            const templateId = process.env.REACT_APP_TEMPLATE_ID;
-            const publicKey = process.env.REACT_APP_PUBLIC_KEY;
+        const serviceId = process.env.REACT_APP_SERVICE_ID;
+        const templateId = process.env.REACT_APP_TEMPLATE_ID;
+        const publicKey = process.env.REACT_APP_PUBLIC_KEY;
+        
+        const createHiddenInput = (name, value) => {
+            const input = document.createElement("input");
+            input.type = "hidden";
+            input.name = name;
+            input.value = value;
+            return input;
+        };
+    
+        const createHiddenForm = () => {
             const hiddenForm = document.createElement("form");
-    
             for (const key in formData) {
-                const input = document.createElement("input");
-                input.type = "hidden";
-                input.name = key;
-                input.value = formData[key];
-                hiddenForm.appendChild(input);
+                hiddenForm.appendChild(createHiddenInput(key, formData[key]));
             }
+            return hiddenForm;
+        };
     
-            document.body.appendChild(hiddenForm);
-    
-            emailjs.sendForm(serviceId, templateId, hiddenForm, publicKey)
-                .then((attendanceResponse) => {console.log("Email sent successfully:", attendanceResponse);
-                    navigate("/confirmation");})
+        const sendEmail = (confirmationPath) => {
+            console.log(formData);
+            emailjs.sendForm(serviceId, templateId, createHiddenForm(), publicKey)
+                .then((attendanceResponse) => {
+                    console.log("Email sent successfully:", attendanceResponse);
+                    navigate(confirmationPath);
+                })
                 .catch((error) => {
                     console.error("Email failed to send:", error);
-            });
+                });
+        };
+    
+        if (formValid) {
+            if (formData.attending === "attending") {
+                sendEmail("/attending-confirmation");
+            } 
+            else if (formData.attending === "notAttending") {
+                sendEmail("/not-attending-confirmation");
+            }
         } else {
-            console.log("form invalid")
+            console.log("Form invalid");
             alert("Please fill out all the fields before submitting.");
         }
     };
+
+    //HTML RENDERS
 
     const renderPreferredDishes = (order, header, mealType, ...meals) => (
         <div className="attending">
