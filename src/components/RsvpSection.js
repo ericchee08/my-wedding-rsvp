@@ -59,9 +59,12 @@ const RsvpSection = () => {
     };
 
     const handleAttendanceButtonClick = (responseType) => {
-        const updateAttendance = responseType;
-        handleInputChange("attending", updateAttendance)
-        setAttendanceResponse(responseType);
+        if (formData.firstName && formData.lastName) {
+            handleInputChange("attending", responseType)
+            setAttendanceResponse(responseType);
+        } else {
+            alert("Please enter your first name and last name before selecting attendance.");
+        }
     };
 
     const handleDayOptionButtonClick = (responseType) => {
