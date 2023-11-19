@@ -23,14 +23,17 @@ const RsvpSection = () => {
     useEffect(() => {
         const validateForm = () => {
             const requiredFields = getRequiredFields(dayOption);
-            const isFormValid = requiredFields.every(field => formData[field] !== "");
+            const isFormValid = requiredFields.every(field => {
+                if (field === 'allergiesInfo' && formData.allergies === 'No') {
+                    return true;
+                }
+                return formData[field] !== "";
+            });
             setFormValid(isFormValid);
         };
     
         validateForm();
     }, [formData, dayOption]);
-
-    
 
     const getRequiredFields = (dayOption) => {
         if (dayOption === "fullDay") {
@@ -195,10 +198,18 @@ const RsvpSection = () => {
                         onClick={() => handleInputChange("allergies", "No")}>No
                     </div>
                 </div>
-                <div className="select-container">
-                <textarea placeholder="Please enter any allergies or dietary requirements we need to know about" id="allergiesInfo" className="allergy-input" value={formData.allergiesInfo}
-                    onChange={(e) => handleInputChange("allergiesInfo", e.target.value)}/>
-                </div>
+
+                {formData.allergies === "Yes" && (
+                    <div className="select-container">
+                        <textarea
+                            placeholder="Please enter any allergies or dietary requirements we need to know about"
+                            id="allergiesInfo"
+                            className="allergy-input"
+                            value={formData.allergiesInfo}
+                            onChange={(e) => handleInputChange("allergiesInfo", e.target.value)}
+                        />
+                    </div>
+                )}
 
                 <div className="submit-button" onClick={handleSubmit}>
                     Submit
@@ -231,10 +242,18 @@ const RsvpSection = () => {
                         onClick={() => handleInputChange("allergies", "No")}>No
                     </div>
                 </div>
-                <div className="select-container">
-                <textarea placeholder="Please enter any allergies or dietary requirements we need to know about" id="allergiesInfo" className="allergy-input" value={formData.allergiesInfo}
-                    onChange={(e) => handleInputChange("allergiesInfo", e.target.value)}/>
-                </div>
+
+                {formData.allergies === "Yes" && (
+                    <div className="select-container">
+                        <textarea
+                            placeholder="Please enter any allergies or dietary requirements we need to know about"
+                            id="allergiesInfo"
+                            className="allergy-input"
+                            value={formData.allergiesInfo}
+                            onChange={(e) => handleInputChange("allergiesInfo", e.target.value)}
+                        />
+                    </div>
+                )}
 
                 <div className="submit-button" onClick={handleSubmit}>
                     Submit
@@ -266,10 +285,18 @@ const RsvpSection = () => {
                         onClick={() => handleInputChange("allergies", "No")}>No
                     </div>
                 </div>
-                <div className="select-container">
-                <textarea placeholder="Please enter any allergies or dietary requirements we need to know about" id="allergiesInfo" className="allergy-input" value={formData.allergiesInfo}
-                    onChange={(e) => handleInputChange("allergiesInfo", e.target.value)}/>
-                </div>
+
+                {formData.allergies === "Yes" && (
+                    <div className="select-container">
+                        <textarea
+                            placeholder="Please enter any allergies or dietary requirements we need to know about"
+                            id="allergiesInfo"
+                            className="allergy-input"
+                            value={formData.allergiesInfo}
+                            onChange={(e) => handleInputChange("allergiesInfo", e.target.value)}
+                        />
+                    </div>
+                )}
 
                 <div className="submit-button" onClick={handleSubmit}>
                     Submit
