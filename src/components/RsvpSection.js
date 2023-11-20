@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "../styles/RsvpSectionStyle.css";
 import emailjs from "emailjs-com";
 import { useNavigate } from "react-router-dom";
+import SubmitCheckModal from "./Modals/SubmitCheckModal";
 
 const RsvpSection = () => {
     const [attendanceResponse, setAttendanceResponse] = useState("");
@@ -238,11 +239,13 @@ const RsvpSection = () => {
             {dayOption === "day" && attendanceResponse === "attending" && renderAllergies(2)}
             {dayOption === "evening" && attendanceResponse === "attending" && renderAllergies(2)}
 
-            {attendanceResponse === "attending" &&  (
+            {(attendanceResponse === "attending" && dayOption !== "") &&(
                 <div className="attending">
-                    <div className="submit-button" onClick={handleSubmit}>
-                        Submit
-                    </div>
+                    {formValid ? (
+                        <SubmitCheckModal handleSubmit={handleSubmit} message={"Please check all your details before submitting"} closeBtnStatus={true}></SubmitCheckModal>
+                    ) : ( 
+                        <SubmitCheckModal message={"Oops, looks like you've missed something!"} closeBtnStatus={false}></SubmitCheckModal>
+                    )}
                 </div>
             )}
 
@@ -253,9 +256,7 @@ const RsvpSection = () => {
                         <textarea placeholder="This is optional" value={formData.message} className="text-area-input"
                         onChange={(e) => handleInputChange("message", e.target.value)}/>
                     </div>
-                    <div className="submit-button" onClick={handleSubmit}>
-                        Submit
-                    </div>
+                    <SubmitCheckModal handleSubmit={handleSubmit} message={"I'm sorry you can't join us, we'll miss you 😢"} closeBtnStatus={true}></SubmitCheckModal>
                 </div>
             )}
             </form>
