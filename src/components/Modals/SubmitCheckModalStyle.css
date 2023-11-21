@@ -19,6 +19,7 @@ body.active-modal {
 
 .btn-modal:hover{
     background-color: #C1E1C1;
+    border-radius: 1.2rem;
 }
 
 .modal, .overlay {
@@ -74,10 +75,12 @@ body.active-modal {
 
 .modal-btn-container .submit-btn:hover {
     background-color:#C1E1C1;
+    border-radius: 1.5rem;
 } 
 
 p {
     text-align: center;
+    font-size: 1.8rem;
 }
 
 
