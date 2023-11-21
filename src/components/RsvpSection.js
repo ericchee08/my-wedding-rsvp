@@ -228,23 +228,21 @@ const RsvpSection = () => {
                     </div>
                 </div>
             )}
-
-            {dayOption === "fullDay" && attendanceResponse === "attending" && (renderPreferredDishes(1, "What would you like to eat during the wedding breakfast? 😋", "preferredDishes", "Beef", "Duck", "Risotto (v)"))}
-            {dayOption === "day" && attendanceResponse === "attending" && renderPreferredDishes(1, "What would you like to eat during the wedding breakfast? 😋", "preferredDishes", "Beef", "Duck", "Risoto (v)")}
+            
+            {(dayOption === "fullDay" || dayOption === "day") && attendanceResponse === "attending" && (renderPreferredDishes(1, "What would you like to eat during the wedding breakfast? 😋", "preferredDishes", "Beef", "Duck", "Risotto (v)"))}
 
             {dayOption === "fullDay" && attendanceResponse === "attending" && renderPreferredDishes(2, "Choose your pizza 🍕", "preferredEveningDishes", "Margherita", 'BBQ Chicken', 'Vegetable (v)')}
             {dayOption === "evening" && attendanceResponse === "attending" && renderPreferredDishes(1, "Choose your pizza 🍕", "preferredEveningDishes", "Margherita", 'BBQ Chicken', 'Vegetable (v)')}
 
             {dayOption === "fullDay" && attendanceResponse === "attending" && renderAllergies(3)}
-            {dayOption === "day" && attendanceResponse === "attending" && renderAllergies(2)}
-            {dayOption === "evening" && attendanceResponse === "attending" && renderAllergies(2)}
+            {(dayOption === "day" || dayOption === "evening") &&attendanceResponse === "attending" && renderAllergies(2)}
 
             {(attendanceResponse === "attending" && dayOption !== "") &&(
                 <div className="attending">
                     {formValid ? (
-                        <SubmitCheckModal handleSubmit={handleSubmit} message={"Please check all your details before submitting"} closeBtnStatus={true}></SubmitCheckModal>
+                        <SubmitCheckModal handleSubmit={handleSubmit} message={"Please check all your details before submitting"} closeBtnStatus={true}/>
                     ) : ( 
-                        <SubmitCheckModal message={"Oops, looks like you've missed something!"} closeBtnStatus={false}></SubmitCheckModal>
+                        <SubmitCheckModal message={"Oops, looks like you've missed something!"} closeBtnStatus={false}/>
                     )}
                 </div>
             )}
@@ -256,7 +254,7 @@ const RsvpSection = () => {
                         <textarea placeholder="This is optional" value={formData.message} className="text-area-input"
                         onChange={(e) => handleInputChange("message", e.target.value)}/>
                     </div>
-                    <SubmitCheckModal handleSubmit={handleSubmit} message={"I'm sorry you can't join us, we'll miss you 😢"} closeBtnStatus={true}></SubmitCheckModal>
+                    <SubmitCheckModal handleSubmit={handleSubmit} message={"I'm sorry you can't join us, we'll miss you 😢"} closeBtnStatus={true}/>
                 </div>
             )}
             </form>
