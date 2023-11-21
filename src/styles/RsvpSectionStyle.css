@@ -27,12 +27,20 @@
 .rsvp-name {
     margin-top: 3rem;
     font-family: 'Parisienne', cursive;
-    font-size: 3rem
+    font-size: 2.8rem
+}
+
+#rsvp-venue {
+    font-size: 1.3rem;
+}
+
+#rsvp-date {
+    font-size: 1.3rem
 }
 
 p {
     margin: 1.4rem;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
 }
 
 .error-message {
@@ -96,9 +104,10 @@ form {
 }
 
 #back-button:hover {
-    background-color: rgb(244, 129, 114);
-    border-color: rgb(244, 129, 114);
+    background-color: rgb(250, 188, 179);
+    border-color: rgb(250, 188, 179);
     border-radius: 1.5rem;
+    color: white;
 }
 
 .attending, .notAttending {

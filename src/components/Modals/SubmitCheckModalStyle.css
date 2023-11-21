@@ -69,8 +69,8 @@ body.active-modal {
 }
 
 .modal-btn-container .close-btn:hover {
-    background-color: rgb(244, 129, 114);
-    border-color: rgb(244, 129, 114);
+    background-color: rgb(250, 188, 179);
+    border-color: rgb(250, 188, 179);
 } 
 
 .modal-btn-container .submit-btn:hover {
