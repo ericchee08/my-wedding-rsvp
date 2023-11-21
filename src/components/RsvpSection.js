@@ -104,10 +104,18 @@ const RsvpSection = () => {
     };
 
     const handleInputChange = (field, value) => {
-        setFormData((prevFormData) => ({
-            ...prevFormData,
-            [field]: value,
-        }));
+        if (field === "allergies" && value === "No") {
+            setFormData((prevFormData) => ({
+                ...prevFormData,
+                [field]: value,
+                allergiesInfo: "",
+            }));
+        } else {
+            setFormData((prevFormData) => ({
+                ...prevFormData,
+                [field]: value,
+            }));
+        }
     };
 
     //SUBMIT LOGIC
