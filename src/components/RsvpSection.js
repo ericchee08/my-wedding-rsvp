@@ -9,6 +9,10 @@ const RsvpSection = () => {
     const [attendanceResponse, setAttendanceResponse] = useState("");
     const [dayOption, setDayOption] = useState("");
     const [formValid, setFormValid] = useState(false);
+    const [errorMessages, setErrorMessages] = useState({
+        firstName: "",
+        lastName: "",
+    });
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
@@ -65,13 +69,20 @@ const RsvpSection = () => {
     //INPUT/SELECT HANDLERS
 
     const handleAttendanceButtonClick = (responseType) => {
-        if (formData.firstName && formData.lastName) {
+
+        const isFirstNameValid = formData.firstName.trim() !== "";
+        const isLastNameValid = formData.lastName.trim() !== "";
+        
+        setErrorMessages({
+            firstName: isFirstNameValid ? "" : "Please enter your first name",
+            lastName: isLastNameValid ? "" : "Please enter your last name",
+        });
+        
+        if (isFirstNameValid && isLastNameValid) {
             handleInputChange("attending", responseType)
             setAttendanceResponse(responseType);
             resetFields();
-        } else {
-            alert("Please enter your first name and last name before selecting attendance.");
-        }
+        } 
     };
 
     const handleDayOptionButtonClick = (responseType) => {
@@ -129,9 +140,6 @@ const RsvpSection = () => {
             else if (formData.attending === "notAttending") {
                 sendEmail("/not-attending-confirmation");
             }
-        } else {
-            console.log("Form invalid");
-            alert("Please fill out all the fields before submitting.");
         }
     };
 
@@ -192,12 +200,14 @@ const RsvpSection = () => {
                     <label htmlFor="firstName">First Name</label>
                     <input type="text" id="firstName" value={formData.firstName}
                         onChange={(e) => handleInputChange("firstName", e.target.value)}/>
+                    <span className="error-message">{errorMessages.firstName}</span>
+
                 </div>
-                
                 <div className="input-names">
                     <label htmlFor="lastName">Last Name</label>
                     <input type="text" id="lastName" value={formData.lastName}
                         onChange={(e) => handleInputChange("lastName", e.target.value)}/>
+                    <span className="error-message">{errorMessages.lastName}</span>
                 </div>
             </div>
 

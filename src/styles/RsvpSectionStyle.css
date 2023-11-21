@@ -35,6 +35,13 @@ p {
     font-size: 1.5rem;
 }
 
+.error-message {
+    margin-top: 2px;
+    font-size: 11px;
+    color: red;
+    text-align: center;
+}
+
 .input-names {
     display: flex;
     flex-direction: column;
@@ -192,6 +199,6 @@ textarea {
     }
 
     .input-names label{
-        margin: 1rem 0 0.5rem 0;
+        margin: 0.2rem 0 0.5rem 0;
     }
 }
