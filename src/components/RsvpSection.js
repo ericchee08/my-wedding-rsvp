@@ -58,6 +58,7 @@ const RsvpSection = () => {
     const resetFields = () => {
         setFormData((prevFormData) => ({
             ...prevFormData,
+            dayOption: "",
             allergiesInfo: "",
             allergies: "",
             preferredEveningDishes: "",
