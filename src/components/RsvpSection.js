@@ -284,7 +284,7 @@ const RsvpSection = () => {
                         <textarea placeholder="This is optional" value={formData.message} className="text-area-input"
                         onChange={(e) => handleInputChange("message", e.target.value)}/>
                     </div>
-                    <SubmitCheckModal handleSubmit={handleSubmit} message={"I'm sorry you can't join us, we'll miss you 😢"} closeBtnStatus={true}/>
+                    <SubmitCheckModal handleSubmit={handleSubmit} message={"Sorry you can't join us, we'll miss you 😢"} closeBtnStatus={true}/>
                 </div>
             )}
             </form>
