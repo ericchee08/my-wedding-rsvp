@@ -22,7 +22,7 @@ const SubmitCheckModal = ({ handleSubmit, message, closeBtnStatus }) => {
 
         {modal && (<div className="modal">
             <div className="overlay"></div>
-                <div className="modal-content"><h2>Are you Sure?</h2>
+                <div className="modal-content">
                     <p>{message}</p>
                     <div className="modal-btn-container">
                         <button className="close-modal" onClick={toggleModal}>Close</button>
