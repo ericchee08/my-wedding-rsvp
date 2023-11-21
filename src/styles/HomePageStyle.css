@@ -2,7 +2,7 @@
     background-image: url("../images/rsvp-background.jpg");
     background-size: cover;
     background-position: center;
-    height: 40rem; 
+    height: 60rem; 
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -14,8 +14,8 @@
 
 #title {
     font-size: 5.5rem;
-    margin-top: 18rem;
-    margin-bottom: 5rem;
+    margin-top: 21.5rem;
+    margin-bottom:2rem;
     font-weight: 400;
     text-align: center;
     font-family: 'Parisienne', cursive;
@@ -47,14 +47,69 @@
     color: lavender;
 }
 
-@media (max-width: 712px) {
+@media (max-width: 359px) {
 
     .header-container{
-        margin: 0 auto;
+        margin: auto;
         max-width: 100%;
     }
 
+    .header-container{
+        background-image: url("../images/rsvp-background0.jpg");
+        background-size: cover;
+        background-position: center;
+        height: 40rem; 
+        display: flex;
+    }
+
     #title{
-        margin: 4.5rem;
+        font-size: 2.6rem;
+        margin-top: 14rem;
+        margin-bottom: 1rem;
+    }
+
+    #date {
+        font-size: 0.9rem;
+        margin: 0;
+    }
+
+    #venue {
+        font-size: 1rem;
+        margin: 0.8rem
+        
     }
 }
+
+@media (max-width: 550px) {
+
+    .header-container{
+        margin: auto;
+        max-width: 100%;
+    }
+
+    .header-container{
+        background-image: url("../images/rsvp-background0.jpg");
+        background-size: cover;
+        background-position: center;
+        height: 60rem; 
+        display: flex;
+    }
+
+    #title{
+        font-size: 2.6rem;
+        margin-top: 22rem;
+        margin-bottom: 1rem;
+    }
+
+    #date {
+        font-size: 0.9rem;
+        margin: 0;
+    }
+
+    #venue {
+        font-size: 1rem;
+        margin: 0.8rem
+        
+    }
+}
+
