@@ -25,8 +25,8 @@ const SubmitCheckModal = ({ handleSubmit, message, closeBtnStatus }) => {
                 <div className="modal-content">
                     <p>{message}</p>
                     <div className="modal-btn-container">
-                        <button className="close-modal" onClick={toggleModal}>Close</button>
-                        {closeBtn && (<button className="" onClick={handleSubmit}>Submit</button>)}
+                        <button className="close-btn" onClick={toggleModal}>Close</button>
+                        {closeBtn && (<button className="submit-btn" onClick={handleSubmit}>Submit</button>)}
                     </div>
                 </div>
             </div>
