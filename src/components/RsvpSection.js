@@ -67,6 +67,17 @@ const RsvpSection = () => {
         }));
     };
 
+    const resetFields2 = () => {
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            allergiesInfo: "",
+            allergies: "",
+            preferredEveningDishes: "",
+            preferredDishes: "",
+            message: ""
+        }));
+    };
+
     //INPUT/SELECT HANDLERS
 
     const handleAttendanceButtonClick = (responseType) => {
@@ -89,7 +100,7 @@ const RsvpSection = () => {
     const handleDayOptionButtonClick = (responseType) => {
         handleInputChange("dayOption", responseType);
         setDayOption(responseType);
-        resetFields();
+        resetFields2();
     };
 
     const handleInputChange = (field, value) => {
