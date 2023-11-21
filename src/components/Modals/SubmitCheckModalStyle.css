@@ -36,6 +36,8 @@ body.active-modal {
 
 .modal-content {
     position: absolute;
+    display: flex;
+    flex-direction: column;
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -45,4 +47,15 @@ body.active-modal {
     border-radius: 0.8rem;
     max-width: 600px;
     min-width: 300px;
+}
+
+.modal-btn-container {
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+
+.modal-btn-container button {
+    margin: 0 0.5rem;
 }
