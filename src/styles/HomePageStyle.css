@@ -125,10 +125,10 @@
 
 @media (min-height: 1001px) {
   .header-container {
-    height: 60rem;
+    height: 81rem;
   }
 
   #title {
-    margin-top: 21rem;
+    margin-top: 30rem;
   }
 }
