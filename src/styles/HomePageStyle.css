@@ -115,11 +115,11 @@
 
 @media (max-height: 1000px) {
   .header-container {
-    height: 60rem;
+    height: 62rem;
   }
 
   #title {
-    margin-top: 21rem;
+    margin-top: 22rem;
   }
 }
 
