@@ -147,3 +147,9 @@ br{
     }
   }
 
+  @media (min-height: 896px) {
+    .confirmation-name {
+        margin-top: 4.3rem;
+    }
+  }
+
