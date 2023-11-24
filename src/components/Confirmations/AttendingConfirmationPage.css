@@ -113,10 +113,10 @@ br{
     }
   }
 
-  @media (max-height: 860px) {
+  @media (max-height: 896px) {
     .confirmation-name {
         font-size: 1.5rem;
-        margin-top: 2.8rem;
+        margin-top: 6rem;
     }
 
     #paper-plane{
@@ -144,12 +144,6 @@ br{
         margin: 0 auto;
         height: 130px;
         width: 225px;
-    }
-  }
-
-  @media (min-height: 896px) {
-    .confirmation-name {
-        margin-top: 4.6rem;
     }
   }
 
