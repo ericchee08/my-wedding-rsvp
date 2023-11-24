@@ -23,7 +23,7 @@
     display: flex;
     margin: 0 auto;
     height: 160px;
-    width: 300px;
+    width: 275px;
 }
 
 br{
@@ -85,6 +85,12 @@ br{
         margin-bottom: 1.4rem;
     }
 
+    .paper-plane-container {
+        display: flex;
+        margin: 0 auto;
+        align-items: center;
+    }
+
     #paper-plane{
         margin-top: 2.3rem;
         margin-bottom: 1.8rem;
@@ -102,9 +108,14 @@ br{
     }
   }
 
-  @media (max-height: 760px) {
+  @media (max-height: 800px) {
     .confirmation-name {
         font-size: 1.5rem;
         margin-top: 1.2rem;
+    }
+
+    #paper-plane{
+        margin-top: 2rem;
+        margin-bottom: 0.8rem;
     }
   }
