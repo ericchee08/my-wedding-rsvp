@@ -63,11 +63,11 @@ br{
 }
 
 
-@media (max-width: 810px) {
+/* @media (max-width: 810px) {
     .confirmation-name {
         margin-top: 8.3rem;
     }
-}
+} */
 
 @media (max-width: 428px) {
     .confirmation-name {
@@ -101,6 +101,37 @@ br{
     }
   }
 
+  @media (max-height: 854px) {
+    .confirmation-name {
+        margin-top: 3rem;
+    }
+  }
+
+  @media (max-height: 800px) {
+    .confirmation-name {
+        margin-top: 3rem;
+    }
+
+    #paper-plane{
+        margin-top: 2rem;
+        margin-bottom: 0rem;
+    }
+
+    #proposal {
+        display: flex;
+        margin: 0 auto;
+        height: 130px;
+        width: 245px;
+    }
+  }
+
+  @media (max-height: 812px) {
+    .confirmation-name {
+        margin-top: 2rem;
+    }
+  }
+  
+/* 
   @media (max-width: 375px) {
     .confirmation-name {
         font-size: 1.5rem;
@@ -116,7 +147,7 @@ br{
   @media (max-height: 896px) {
     .confirmation-name {
         font-size: 1.5rem;
-        margin-top: 6rem;
+        margin-top: 5rem;
     }
 
     #paper-plane{
@@ -145,5 +176,5 @@ br{
         height: 130px;
         width: 225px;
     }
-  }
+  } */
 
