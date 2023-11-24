@@ -65,14 +65,14 @@ br{
 
 @media (max-width: 810px) {
     .confirmation-name {
-        margin-top: 8rem;
+        margin-top: 8.3rem;
     }
 }
 
 @media (max-width: 428px) {
     .confirmation-name {
         font-size: 1.5rem;
-        margin-top: 4.2rem;
+        margin-top: 4.5rem;
     }
     
     .confirmation-venue {
@@ -104,7 +104,7 @@ br{
   @media (max-width: 375px) {
     .confirmation-name {
         font-size: 1.5rem;
-        margin-top: 2rem;
+        margin-top: 2.3rem;
     }
 
     #paper-plane{
@@ -129,7 +129,7 @@ br{
   @media (max-height: 812px) {
     .confirmation-name {
         font-size: 1.5rem;
-        margin-top: 1.5rem;
+        margin-top: 1.8rem;
     }
 
     #paper-plane{
@@ -149,7 +149,7 @@ br{
 
   @media (min-height: 896px) {
     .confirmation-name {
-        margin-top: 4.3rem;
+        margin-top: 4.6rem;
     }
   }
 
