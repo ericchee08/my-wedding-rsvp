@@ -211,7 +211,7 @@ const RsvpSection = () => {
             <div className="rsvp-headers">
                 <p className="rsvp-name">Eric & Lauren</p>
                 <p id="rsvp-venue"> The Riding School, Calke Abbey</p>
-                <p id="rsvp-date">Monday June 10 2024</p>
+                <p id="rsvp-date">Monday 10th June 2024</p>
             </div>
 
             <form onSubmit={(e) => e.preventDefault()}>

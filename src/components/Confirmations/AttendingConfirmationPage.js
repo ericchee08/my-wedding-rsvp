@@ -8,16 +8,16 @@ const AttendingConfirmationPage = () => {
     <div>
       <div className="attending-confirmation-page-container">
         <div className="attending-confirmation-container">
-          <p className="rsvp-name">Eric & Lauren</p>
-          <p id="rsvp-venue"> The Riding School, Calke Abbey</p>
-          <p id="rsvp-date">Monday June 10 2024</p>
-          <FontAwesomeIcon id='paper-plane'icon={faPaperPlane} bounce size="2xl" style={{ color: "#c067d5" }} />
-          <p id="success-confirmation">You have succesfully sent your RSVP!</p>
+          <p className="confirmation-name">Eric & Lauren</p>
+          <p className="confirmation-venue"> The Riding School, Calke Abbey <br /> Monday 10th June 2024</p>
+          <img id="proposal" src="https://iili.io/Jnu18wG.jpg" alt="" />
+          <FontAwesomeIcon id='paper-plane'icon={faPaperPlane} bounce size="2xl" style={{ color: "#D4B78A" }} />
+          <p className="success-confirmation">You have succesfully sent your RSVP! <br/> We can't wait to see you!</p>
 
         </div>
 
-        <div id="back">
-              <Link to="/" id="back-button">
+        <div id="home">
+              <Link to="/" id="home-button">
                   Home
               </Link>
           </div>
