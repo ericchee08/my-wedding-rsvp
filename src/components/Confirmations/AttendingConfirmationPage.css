@@ -101,6 +101,12 @@ br{
     }
   }
 
+  @media (max-height: 896px) {
+    .confirmation-name {
+        margin-top: 6rem;
+    }
+  }
+
   @media (max-height: 854px) {
     .confirmation-name {
         margin-top: 3rem;
