@@ -12,7 +12,6 @@
     width: 38rem;
     margin-top: 2.5rem;
     box-shadow: 0 1px 30px rgba(221, 199, 201, 1);
-
     padding-bottom: 2rem;
 }
 
@@ -87,7 +86,10 @@ form {
 }
 
 .attendance-button:hover, .day-option-button:hover {
-    background-color:#C1E1C1;
+    background-color: rgb(250, 188, 179);
+    box-shadow: 0 1px 4px rgba(221, 199, 201, 1);
+    border-color: rgb(250, 188, 179);;
+    color: #fff; 
     border-radius: 1.5rem;
 }
 
@@ -143,8 +145,10 @@ label{
 }
 
 .box-select:hover{
-    background-color:#C1E1C1;
+    background-color: rgb(250, 188, 179);
     border-radius: 1.5rem;
+    border-color: rgb(250, 188, 179);;
+    color: white;
 }
 
 .text-area-input, .additional-input {
@@ -153,19 +157,25 @@ label{
 }
 
 .attendance-button.selected {
-    background-color: #C1E1C1; 
+    background-color: rgb(250, 188, 179);
+    box-shadow: 0 1px 4px rgba(221, 199, 201, 1);
+    border-color: rgb(250, 188, 179);
     color: #fff; 
     border-radius: 1.5rem;
 }
 
 .day-option-button.selected {
-    background-color: #C1E1C1; 
+    background-color: rgb(250, 188, 179);
+    box-shadow: 0 1px 4px rgba(221, 199, 201, 1);
+    border-color: rgb(250, 188, 179);;
     color: #fff; 
     border-radius: 1.5rem;
 }
 
 .box-select.selected {
-    background-color: #C1E1C1; 
+    background-color: rgb(250, 188, 179);
+    box-shadow: 0 1px 3px rgba(221, 199, 201, 1);
+    border-color: rgb(250, 188, 179);;
     color: #fff; 
     border-radius: 1.5rem;
 }
@@ -174,8 +184,7 @@ textarea {
     margin-top: 1rem;
     border-radius: 0.8rem;
     border-style: solid;
-    border-width: 1px;
-    border-color: #D9D9D9;
+    border-width: 1.2px;
     width: 93.5%;
     padding: 10px;
 }

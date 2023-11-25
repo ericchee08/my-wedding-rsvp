@@ -18,8 +18,11 @@ body.active-modal {
 }
 
 .btn-modal:hover{
-    background-color: #C1E1C1;
-    border-radius: 1.2rem;
+    background-color: rgb(250, 188, 179);
+    box-shadow: 0 1px 4px rgba(221, 199, 201, 1);
+    border-color: rgb(250, 188, 179);;
+    color: #fff; 
+    border-radius: 1.5rem;
 }
 
 .modal, .overlay {
@@ -70,12 +73,18 @@ body.active-modal {
 
 .modal-btn-container .close-btn:hover {
     background-color: rgb(250, 188, 179);
+    box-shadow: 0 1px 4px rgba(221, 199, 201, 1);
     border-color: rgb(250, 188, 179);
+    border-radius: 1.5rem;
+    color: white;
 } 
 
 .modal-btn-container .submit-btn:hover {
-    background-color:#C1E1C1;
+    background-color:rgb(250, 188, 179);
+    box-shadow: 0 1px 4px rgba(221, 199, 201, 1);
+    border-color: rgb(250, 188, 179);;
     border-radius: 1.5rem;
+    color: white;
 } 
 
 p {
