@@ -1,29 +1,30 @@
-.attending-confirmation-page-container {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    background-image: url("../../images/confirmation-background.jpg");
-    background-size: cover;
-    background-position: center;
-}
 
-.attending-confirmation-container {
-    margin-top: 9.5rem
+
+.attending-confirmation-page-container {
+  background-image: url("../../images/rsvp-background.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 60rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 #paper-plane{
     display: flex;
     margin: 0 auto;
-    margin-top: 2.6rem;
-    margin-bottom: 2rem;
+}
+
+.paper-plane-container {
+    display: flex;
+    align-items: center;
 }
 
 #proposal {
     display: flex;
     margin: 0 auto;
-    height: 160px;
-    width: 275px;
+    height: 140px;
+    width: 250px;
 }
 
 br{
@@ -33,23 +34,28 @@ br{
 .confirmation-name {
     font-family: 'Parisienne', cursive;
     font-size: 2.8rem;
-    margin-top: 3rem;
+    margin-top: 20rem;
 }
 
 .confirmation-venue {
     font-size: 1.3rem;
-    margin-bottom: 2.8rem;
+    margin-bottom: 2rem;
 }
 
 .success-confirmation {
     font-size: 1.2rem;
-    margin-bottom: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+#home {
+    display: flex;
+    justify-content: center;
 }
 
 #home-button {
     text-decoration: none;
     color: inherit;
-    border: #D9D9D9 solid 1px;
+    border: hsl(0, 0%, 40%) solid 1px;
     border-radius: 0.8rem;
     padding: 0.8rem 1.5rem;
     transition: 0.3s;
@@ -62,17 +68,10 @@ br{
     color: white;
 }
 
-
-/* @media (max-width: 810px) {
-    .confirmation-name {
-        margin-top: 8.3rem;
-    }
-} */
-
 @media (max-width: 428px) {
     .confirmation-name {
         font-size: 1.5rem;
-        margin-top: 4.5rem;
+        margin-top: 20rem;
     }
     
     .confirmation-venue {
@@ -84,103 +83,18 @@ br{
         font-size: 0.8rem;
         margin-bottom: 1.4rem;
     }
-
     .paper-plane-container {
         display: flex;
         margin: 0 auto;
         align-items: center;
     }
-
     #paper-plane{
-        margin-top: 2.3rem;
+        margin-top: 1.8rem;
         margin-bottom: 1.8rem;
     }
-
     #home-button {
         padding: 0.6rem 1.3rem;
     }
   }
 
-  @media (max-height: 896px) {
-    .confirmation-name {
-        margin-top: 6rem;
-    }
-  }
-
-  @media (max-height: 854px) {
-    .confirmation-name {
-        margin-top: 3rem;
-    }
-  }
-
-  @media (max-height: 800px) {
-    .confirmation-name {
-        margin-top: 3rem;
-    }
-
-    #paper-plane{
-        margin-top: 2rem;
-        margin-bottom: 0rem;
-    }
-
-    #proposal {
-        display: flex;
-        margin: 0 auto;
-        height: 130px;
-        width: 245px;
-    }
-  }
-
-  @media (max-height: 812px) {
-    .confirmation-name {
-        margin-top: 2rem;
-    }
-  }
   
-/* 
-  @media (max-width: 375px) {
-    .confirmation-name {
-        font-size: 1.5rem;
-        margin-top: 2.3rem;
-    }
-
-    #paper-plane{
-        margin-top: 2rem;
-        margin-bottom: 0.3rem;
-    }
-  }
-
-  @media (max-height: 896px) {
-    .confirmation-name {
-        font-size: 1.5rem;
-        margin-top: 5rem;
-    }
-
-    #paper-plane{
-        margin-top: 2.7rem;
-        margin-bottom: 0.8rem;
-    }
-
-  }
-
-  @media (max-height: 812px) {
-    .confirmation-name {
-        font-size: 1.5rem;
-        margin-top: 2.3rem;
-    }
-
-    #paper-plane{
-        margin-top: 2rem;
-        margin-bottom: 0.8rem;
-    }
-  }
-
-  @media (max-height: 760px) {
-    #proposal {
-        display: flex;
-        margin: 0 auto;
-        height: 130px;
-        width: 225px;
-    }
-  } */
-
