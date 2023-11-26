@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./SubmitCheckModalStyle.css"
+import "../../styles/SubmitCheckModalStyle.css"
 
 const SubmitCheckModal = ({ handleSubmit, message, closeBtnStatus }) => {
     const[modal, setModal] = useState(false);

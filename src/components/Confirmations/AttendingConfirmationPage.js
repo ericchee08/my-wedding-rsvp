@@ -1,4 +1,4 @@
-import "./AttendingConfirmationPage.css"
+import "../../styles/AttendingConfirmationPage.css"
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane} from '@fortawesome/free-solid-svg-icons';
