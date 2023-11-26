@@ -20,9 +20,7 @@ const AttendingConfirmationPage = () => {
                   Home
               </Link>
           </div>
-        </div>
-
-        
+        </div>  
       </div>
     </div>
   )

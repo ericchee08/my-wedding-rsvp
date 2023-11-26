@@ -22,8 +22,6 @@ const NotAttendingConfirmationPage = () => {
               </Link>
           </div>
         </div>
-
-        
       </div>
     </div>
   )
