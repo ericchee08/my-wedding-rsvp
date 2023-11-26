@@ -15,16 +15,16 @@
     margin: 0 auto;
 }
 
-.paper-plane-container {
+#heart {
     display: flex;
-    align-items: center;
+    padding-top: 2rem;
+    margin: 0 auto;
 }
 
-#proposal {
+.paper-plane-container .heart-container {
     display: flex;
-    margin: 0 auto;
-    height: 140px;
-    width: 250px;
+    margin-top: 2rem;
+    align-items: center;
 }
 
 br{
@@ -49,8 +49,7 @@ br{
 
 .declined-confirmation {
     font-size: 1.2rem;
-    margin: 4rem;
-    line-height: 2rem;
+    margin: 2rem;
 }
 
 #home {
@@ -89,6 +88,12 @@ br{
         font-size: 0.8rem;
         margin-bottom: 1.4rem;
     }
+
+    .declined-confirmation {
+        font-size: 0.8rem;
+        margin: 3rem;
+    }
+
     .paper-plane-container {
         display: flex;
         margin: 0 auto;
