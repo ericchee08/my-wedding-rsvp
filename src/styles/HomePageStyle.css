@@ -6,6 +6,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  filter: brightness(1.01);
 }
 
 .schedule-container {
@@ -85,6 +86,7 @@
     display: flex;
     margin: auto;
     max-width: 100%;
+    filter: brightness(1.01);
   }
 
   #title {
